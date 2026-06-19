@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   color-scheme: dark;
   --bg: #070c08;
   --bg-soft: #0e160f;
@@ -181,6 +181,7 @@ h3 {
 .hero-copy p,
 .section p,
 .final-cta p {
+  margin-top: 18px;
   color: var(--muted);
   font-size: 18px;
 }
@@ -772,6 +773,10 @@ details {
 .section-heading {
   max-width: 760px;
   margin-bottom: 34px;
+}
+
+.section-heading p {
+  margin-top: 20px;
 }
 
 .attendant-section {
@@ -1519,3 +1524,6 @@ details p {
     transform: translateY(18px);
   }
 }
+
+
+
