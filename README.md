@@ -1,6 +1,6 @@
-# Hot Sales
+# HS Metrics
 
-Landing page comercial do Hot Sales.
+Landing page comercial do HS Metrics (Highly Smart Metrics).
 
 ## Publicação
 

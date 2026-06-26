@@ -61,9 +61,9 @@ svg {
   top: 14px;
   z-index: 20;
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: minmax(0, 1fr) auto minmax(120px, 1fr);
   align-items: center;
-  gap: 24px;
+  gap: clamp(10px, 2vw, 24px);
   width: min(1240px, calc(100% - 40px));
   margin: 0 auto;
   padding: 10px 14px;
@@ -77,16 +77,24 @@ svg {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  width: max-content;
+  min-width: 0;
+  width: auto;
   font-weight: 800;
   font-size: 19px;
 }
 
-.brand img {
+.brand-icon {
   width: 38px;
   height: 38px;
   border-radius: 12px;
   box-shadow: 0 0 26px rgba(159, 232, 112, 0.18);
+}
+
+.brand-wordmark {
+  width: clamp(150px, 14vw, 190px);
+  height: 46px;
+  object-fit: cover;
+  object-position: center;
 }
 
 .nav-links {
@@ -119,6 +127,11 @@ svg {
   border-radius: 999px;
   color: var(--accent);
   background: rgba(159, 232, 112, 0.08);
+  white-space: nowrap;
+}
+
+.nowrap {
+  white-space: nowrap;
 }
 
 .hero {
@@ -190,7 +203,7 @@ h3 {
 
 .section p,
 .final-cta p {
-  margin-top: 30px;
+  margin-top: 24px;
   color: var(--muted);
   font-size: 18px;
 }
@@ -199,7 +212,7 @@ h3 {
 .section-heading p,
 .final-cta h2 + p {
   margin-top: 0;
-  padding-top: 18px;
+  padding-top: 12px;
 }
 
 .hero-actions {
@@ -922,32 +935,61 @@ details {
 
 .notification-section {
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 28px;
+  grid-template-columns: 0.78fr 1.22fr;
+  gap: clamp(28px, 4vw, 66px);
   align-items: center;
 }
 
+.notification-visual {
+  position: relative;
+  min-height: 500px;
+  perspective: 1200px;
+}
+
+.notification-phone {
+  display: block;
+  width: min(100%, 760px);
+  margin: 0 auto;
+  filter: drop-shadow(0 32px 70px rgba(0, 0, 0, 0.48));
+}
+
+.notification-phone img {
+  width: 100%;
+  height: auto;
+}
+
 .notification-stack {
+  position: absolute;
+  right: 0;
+  bottom: 14px;
   display: grid;
-  gap: 16px;
+  width: min(390px, 58%);
+  gap: 14px;
 }
 
 .push-card {
   display: flex;
   align-items: center;
   gap: 14px;
-  min-height: 104px;
-  padding: 18px;
+  min-height: 92px;
+  padding: 16px;
   border-radius: 22px;
+  background: rgba(18, 28, 19, 0.9);
+  backdrop-filter: blur(14px);
 }
 
 .push-card:nth-child(2) {
-  margin-left: 72px;
+  margin-left: -70px;
+}
+
+.push-card:nth-child(3) {
+  margin-left: -26px;
 }
 
 .push-card img {
-  width: 52px;
-  height: 52px;
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
   border-radius: 14px;
 }
 
@@ -959,6 +1001,8 @@ details {
 .push-card span {
   margin-top: 2px;
   color: var(--muted);
+  font-size: 14px;
+  line-height: 1.35;
 }
 
 .pricing {
@@ -967,12 +1011,13 @@ details {
 
 .pricing-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.9fr) minmax(0, 0.9fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
+  align-items: stretch;
 }
 
 .price-card {
-  min-height: 590px;
+  min-height: 100%;
   padding: 30px;
   border-radius: 28px;
 }
@@ -994,17 +1039,23 @@ details {
 summary {
   cursor: pointer;
   color: var(--text);
+  font-size: 16px;
   font-weight: 800;
+  line-height: 1.35;
 }
 
 details p {
   margin: 12px 0 0;
   color: var(--muted);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.55;
 }
 
 .main-price {
   border-color: rgba(159, 232, 112, 0.52);
   box-shadow: 0 0 80px rgba(159, 232, 112, 0.12), var(--shadow);
+  transform: translateY(-12px);
 }
 
 .plan-badge {
@@ -1080,6 +1131,40 @@ details p {
   width: 100%;
 }
 
+.plan-note {
+  display: block;
+  margin-top: 14px;
+  color: var(--soft);
+  font-size: 13px;
+  text-align: center;
+}
+
+.guarantee-box {
+  display: grid;
+  gap: 8px;
+  margin-top: 22px;
+  padding: 22px;
+  border: 1px solid rgba(159, 232, 112, 0.2);
+  border-radius: 22px;
+  background: rgba(20, 32, 20, 0.58);
+}
+
+.guarantee-box h3 {
+  margin: 0;
+}
+
+.guarantee-box p {
+  max-width: 820px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.guarantee-box small {
+  display: block;
+  color: var(--soft);
+}
+
 .final-cta {
   width: min(1180px, calc(100% - 40px));
   margin: 0 auto 60px;
@@ -1147,6 +1232,14 @@ details p {
 }
 
 @media (max-width: 1120px) {
+  .site-header {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
   .hero {
     grid-template-columns: 1fr;
     min-height: auto;
@@ -1167,6 +1260,36 @@ details p {
   .shot-grid,
   .timing-section {
     grid-template-columns: 1fr;
+  }
+
+  .notification-copy {
+    grid-row: auto;
+  }
+
+  .notification-visual {
+    min-height: auto;
+  }
+
+  .notification-phone {
+    max-width: 720px;
+  }
+
+  .notification-stack {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    z-index: 2;
+    width: min(100%, 560px);
+    margin: -54px auto 0;
+  }
+
+  .push-card:nth-child(2),
+  .push-card:nth-child(3) {
+    margin-left: 0;
+  }
+
+  .main-price {
+    transform: none;
   }
 
   .phone-preview {
@@ -1208,10 +1331,6 @@ details p {
     width: min(100% - 28px, 1180px);
   }
 
-  .nav-links {
-    display: none;
-  }
-
   .header-cta {
     min-height: 38px;
     padding: 8px 12px;
@@ -1227,6 +1346,11 @@ details p {
 
   .hero {
     padding: 42px 0 42px;
+  }
+
+  .brand-wordmark {
+    width: min(154px, 38vw);
+    height: 40px;
   }
 
   .hero .eyebrow {
@@ -1423,8 +1547,18 @@ details p {
     padding-bottom: 34px;
   }
 
-  .push-card:nth-child(2) {
+  .push-card:nth-child(2),
+  .push-card:nth-child(3) {
     margin-left: 0;
+  }
+
+  .notification-phone {
+    width: min(100%, 520px);
+    margin: -8px auto 0;
+  }
+
+  .notification-stack {
+    margin-top: -34px;
   }
 
   .price-card {
