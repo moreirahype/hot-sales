@@ -37,6 +37,51 @@ for (const item of faqItems) {
 const whatsappButton = document.querySelector(".whatsapp-float");
 const protectedSections = document.querySelectorAll(".notification-section, .pricing, .final-cta, .site-footer");
 
+const header = document.querySelector(".site-header");
+const internalLinks = document.querySelectorAll('a[href^="#"]');
+
+function getAnchorTarget(hash) {
+  if (!hash || hash === "#") return null;
+  try {
+    return document.querySelector(hash);
+  } catch {
+    return null;
+  }
+}
+
+function getAnchorTop(target) {
+  if (target.id === "top") return 0;
+
+  const heading = target.querySelector("h1, h2") || target;
+  const headerBottom = header?.getBoundingClientRect().bottom || 0;
+  const breathingRoom = window.innerWidth <= 760 ? 22 : 30;
+  return Math.max(0, window.scrollY + heading.getBoundingClientRect().top - headerBottom - breathingRoom);
+}
+
+function scrollToHash(hash, behavior = "smooth") {
+  const target = getAnchorTarget(hash);
+  if (!target) return false;
+  window.scrollTo({ top: getAnchorTop(target), behavior });
+  return true;
+}
+
+for (const link of internalLinks) {
+  link.addEventListener("click", (event) => {
+    const hash = link.getAttribute("href");
+    if (!scrollToHash(hash)) return;
+    event.preventDefault();
+    history.pushState(null, "", hash);
+  });
+}
+
+window.addEventListener("popstate", () => scrollToHash(window.location.hash));
+
+if (window.location.hash) {
+  window.addEventListener("load", () => {
+    requestAnimationFrame(() => scrollToHash(window.location.hash, "auto"));
+  }, { once: true });
+}
+
 if (whatsappButton && protectedSections.length && "IntersectionObserver" in window) {
   const visibleSections = new Set();
   const observer = new IntersectionObserver((entries) => {

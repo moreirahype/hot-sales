@@ -24,13 +24,7 @@
 
 html {
   min-width: 320px;
-  scroll-behavior: smooth;
-  scroll-padding-top: 116px;
   background: var(--bg);
-}
-
-[id] {
-  scroll-margin-top: 116px;
 }
 
 body {
@@ -1206,6 +1200,13 @@ details p a {
 .final-cta h2 {
   max-width: 820px;
   margin: 0 auto 26px;
+  font-size: clamp(30px, 4.1vw, 58px);
+  line-height: 1.06;
+}
+
+.final-cta h2 span {
+  display: block;
+  white-space: nowrap;
 }
 
 .site-footer {
@@ -1408,14 +1409,6 @@ details p a {
 }
 
 @media (max-width: 760px) {
-  html {
-    scroll-padding-top: 116px;
-  }
-
-  [id] {
-    scroll-margin-top: 116px;
-  }
-
   .site-header {
     grid-template-columns: 1fr auto;
     width: min(100% - 28px, 1180px);
@@ -1684,7 +1677,7 @@ details p a {
   }
 
   .final-cta h2 {
-    font-size: 29px;
+    font-size: clamp(17px, 5.6vw, 29px);
     line-height: 1.06;
   }
 
