@@ -84,9 +84,9 @@ svg {
 }
 
 .brand-wordmark {
-  width: 122px;
+  width: 112px;
   height: auto;
-  max-height: 36px;
+  max-height: 32px;
   object-fit: contain;
 }
 
@@ -1238,7 +1238,7 @@ details p a {
 }
 
 .footer-brand .brand-wordmark {
-  width: 112px;
+  width: 102px;
 }
 
 .site-footer nav {

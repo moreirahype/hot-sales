@@ -52,9 +52,9 @@ function getAnchorTarget(hash) {
 function getAnchorTop(target) {
   if (target.id === "top") return 0;
 
-  const heading = target.querySelector("h1, h2") || target;
+  const heading = target.querySelector(".eyebrow") || target.querySelector("h1, h2") || target;
   const headerBottom = header?.getBoundingClientRect().bottom || 0;
-  const breathingRoom = window.innerWidth <= 760 ? 22 : 30;
+  const breathingRoom = window.innerWidth <= 760 ? 24 : 42;
   return Math.max(0, window.scrollY + heading.getBoundingClientRect().top - headerBottom - breathingRoom);
 }
 
