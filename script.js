@@ -35,7 +35,7 @@ for (const item of faqItems) {
 }
 
 const whatsappButton = document.querySelector(".whatsapp-float");
-const protectedSections = document.querySelectorAll(".notification-section, .pricing, .final-cta, .site-footer");
+const protectedSections = document.querySelectorAll(".pricing");
 
 const header = document.querySelector(".site-header");
 const internalLinks = document.querySelectorAll('a[href^="#"]');
